@@ -15,9 +15,17 @@ You are building FitClip, a SaaS platform that turns golf club fittings into per
 - Backend: Node.js 20 + Express + TypeScript
 - Frontend: React 18 + TypeScript + Material-UI + Vite
 - Video Service: Python 3.11 + FastAPI + FFmpeg
-- Database: PostgreSQL 15 (via Prisma ORM)
-- Cache: Redis 7.2
-- Infrastructure: AWS (ECS, RDS, S3, CloudFront)
+- Database: PostgreSQL 15 (Supabase) via Prisma ORM
+- Storage: Supabase Storage (for videos)
+- Cache: Redis 7.2 (local dev) / Upstash (production)
+- Deployment: Railway (backend) + Vercel (frontend)
+
+## Environment Ready:
+- ✅ Supabase project: "djegan97-oss FitClip" configured
+- ✅ Database credentials in backend/.env
+- ✅ Storage bucket "videos" created (public)
+- ✅ All environment variables set
+- See SUPABASE_SETUP.md for full configuration details
 
 ## Code Standards:
 - TypeScript: Use strict mode, ESLint + Prettier

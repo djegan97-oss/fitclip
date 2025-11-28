@@ -1,0 +1,48 @@
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.production
+*.env
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+venv/
+.venv/
+env/
+
+# Build outputs
+dist/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+.cache/
+.temp/
+
+# Uploads (local development)
+uploads/
+videos/
+
+# Database
+*.db
+*.sqlite
+
+# Secrets and keys
+*.pem
+*.key
+secrets.json
+

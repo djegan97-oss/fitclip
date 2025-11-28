@@ -1,0 +1,87 @@
+# FitClip Project Rules for Claude
+
+## Project Context
+You are building FitClip, a SaaS platform that turns golf club fittings into personalized video recaps.
+
+## Key Documentation (always reference):
+- README.md - Project overview and index
+- TECHNICAL_ARCHITECTURE.md - System architecture
+- API_REFERENCE.md - API contracts
+- FEATURE_SPECS.md - Feature requirements
+- PRD.md - Product requirements
+- DEVELOPMENT_SETUP.md - Local setup guide
+
+## Technology Stack:
+- Backend: Node.js 20 + Express + TypeScript
+- Frontend: React 18 + TypeScript + Material-UI + Vite
+- Video Service: Python 3.11 + FastAPI + FFmpeg
+- Database: PostgreSQL 15 (via Prisma ORM)
+- Cache: Redis 7.2
+- Infrastructure: AWS (ECS, RDS, S3, CloudFront)
+
+## Code Standards:
+- TypeScript: Use strict mode, ESLint + Prettier
+- Python: Use Black formatter, Pylint, type hints
+- Tests: Jest (backend), pytest (video service), >80% coverage
+- Commits: Conventional Commits format (feat:, fix:, docs:, etc.)
+- Error Handling: Always use try-catch, return structured errors
+- Logging: Use structured JSON logging (pino for Node.js)
+
+## Architecture Principles:
+- API-first: All features exposed via REST APIs
+- Stateless services: Horizontal scaling
+- Event-driven: Async processing for video generation
+- Security: JWT auth, encrypted data, input validation (Zod)
+
+## When implementing features:
+1. Read the feature spec in FEATURE_SPECS.md first
+2. Check API_REFERENCE.md for endpoint contracts
+3. Follow acceptance criteria exactly
+4. Write tests before or alongside implementation
+5. Update API docs if endpoints change
+
+## Common Patterns:
+
+### API Endpoint (Express + TypeScript):
+import { Router } from 'express';
+import { z } from 'zod';
+import { authenticate } from '../middleware/auth';
+
+const router = Router();
+
+const schema = z.object({
+  field: z.string().min(1)
+});
+
+router.post('/', authenticate, async (req, res) => {
+  try {
+    const data = schema.parse(req.body);
+    const result = await service.create(data);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});### Service Layer (Business Logic):
+export class FittingService {
+  constructor(private prisma: PrismaClient) {}
+  
+  async create(data: CreateFittingDto) {
+    return await this.prisma.fitting.create({
+      data: {
+        ...data,
+        status: 'in_progress',
+        created_at: new Date()
+      }
+    });
+  }
+}## Priority Features (build in this order):
+1. TrackMan Integration (FEATURE_SPECS.md page 1-15)
+2. AI Highlight Selection (FEATURE_SPECS.md page 15-25)
+3. Video Generation (FEATURE_SPECS.md page 25+)
+4. Multi-Channel Delivery
+5. Shop Dashboard
+
+## Testing:
+- Always write tests for new features
+- Run `npm test` (backend) or `pytest` (video service) before committing
+- Integration tests for critical flows

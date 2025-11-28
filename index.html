@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitClip - Never Lose Another Sale to Confusion</title>
+    <meta name="description" content="FitClip turns every club fitting into a personalized video recap that increases conversions by 20%+. Trusted by 200+ golf shops.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep-green: #1B4332;
+            --navy: #0D1B2A;
+            --orange: #FF6B35;
+            --light-gray: #F7FAFC;
+            --medium-gray: #4A5568;
+            --off-white: #F0F0F0;
+            --success-green: #48BB78;
+            --light-blue: #EBF8FF;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--navy);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--deep-green) 0%, var(--navy) 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.2;
+        }
+
+        .hero .subheadline {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--off-white);
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .video-mockup {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 8px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 12px 0 12px 20px;
+            border-color: transparent transparent transparent white;
+            margin-left: 4px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e55a2a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .social-proof {
+            font-size: 14px;
+            color: #B0B0B0;
+            letter-spacing: 0.5px;
+        }
+
+        /* Trust Indicators */
+        .trust-section {
+            background: var(--light-gray);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            align-items: center;
+        }
+
+        .logo-placeholder {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--medium-gray);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-placeholder:hover {
+            opacity: 1;
+        }
+
+        .trust-subtext {
+            color: var(--medium-gray);
+            font-size: 16px;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background: white;
+            padding: 120px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(32px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-header .subheadline {
+            font-size: 20px;
+            color: var(--medium-gray);
+            font-style: italic;
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pain-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .pain-card:hover {
+            border-color: var(--orange);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .pain-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .pain-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
+        .pain-card p {
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            padding: 120px 20px;
+        }
+
+        .solution-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .value-prop {
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--navy);
+            margin-bottom: 60px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(27, 67, 50, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+        }
+
+        .benefit-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--navy);
+        }
+
+        .benefit-card p {
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .process-section {
+            background: white;
+            padding: 120px 20px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .step-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--navy);
+        }
+
+        .step-card p {
+            color: var(--medium-gray);
+            line-height: 1.8;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: var(--light-gray);
+            padding: 120px 20px;
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .feature-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-image {
+            background: linear-gradient(135deg, var(--deep-green) 0%, var(--navy) 100%);
+            border-radius: 12px;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .feature-content h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--navy);
+        }
+
+        .feature-content h4 {
+            font-size: 18px;
+            color: var(--orange);
+            margin-bottom: 20px;
+        }
+
+        .feature-content p {
+            color: var(--medium-gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .feature-bullets {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .feature-bullets li {
+            padding: 8px 0;
+            color: var(--medium-gray);
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .feature-bullets li::before {
+            content: '✓';
+            color: var(--success-green);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background: var(--navy);
+            color: white;
+            padding: 120px 20px;
+        }
+
+        .testimonials-section .section-header h2,
+        .testimonials-section .section-header .subheadline {
+            color: white;
+        }
+
+        .testimonials-section .subheadline {
+            color: #CBD5E0 !important;
+        }
+
+        .featured-testimonial {
+            background: white;
+            color: var(--navy);
+            padding: 50px;
+            border-radius: 12px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .testimonial-quote {
+            font-size: 22px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .author-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--deep-green), var(--orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--medium-gray);
+            font-size: 14px;
+        }
+
+        .metric-callout {
+            background: rgba(72, 187, 120, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            color: var(--success-green);
+            font-weight: 600;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial-card .testimonial-quote {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card .author-photo {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+        }
+
+        .testimonial-card .author-info h4,
+        .testimonial-card .author-info p {
+            color: white;
+        }
+
+        .testimonial-card .author-info p {
+            opacity: 0.8;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .stat {
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: white;
+            padding: 120px 20px;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--orange);
+            border-width: 3px;
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--orange);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .tier-label {
+            font-size: 12px;
+            color: var(--orange);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .plan-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--navy);
+        }
+
+        .price {
+            font-size: 52px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .price-period {
+            font-size: 18px;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+
+        .plan-description {
+            color: var(--medium-gray);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: var(--medium-gray);
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--success-green);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .features-list li strong {
+            color: var(--navy);
+        }
+
+        .best-for {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--medium-gray);
+            margin-top: 20px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--light-gray);
+            padding: 120px 20px;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light-gray);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: var(--orange);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 30px 25px;
+            color: var(--medium-gray);
+            line-height: 1.8;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, var(--deep-green) 0%, var(--navy) 100%);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(36px, 5vw, 48px);
+            margin-bottom: 30px;
+        }
+
+        .final-cta .supporting-text {
+            font-size: 22px;
+            margin-bottom: 40px;
+            color: #E2E8F0;
+            line-height: 1.6;
+        }
+
+        .cta-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            font-size: 16px;
+            color: #E2E8F0;
+        }
+
+        .guarantee-box {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 60px;
+            backdrop-filter: blur(10px);
+        }
+
+        .guarantee-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+        }
+
+        .guarantee-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .guarantee-box p {
+            color: #E2E8F0;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #050A0F;
+            color: #A0AEC0;
+            padding: 80px 20px 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #A0AEC0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--orange);
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 60px;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Highlight animations on scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in-up">
+            <h1>Never Lose Another Sale to Confusion</h1>
+            <p class="subheadline">FitClip turns every club fitting into a personalized video recap your customers will watch, remember, and share—automatically increasing conversions by 20%+.</p>
+            
+            <div class="video-mockup">
+                <div class="video-placeholder">
+                    <div class="play-button"></div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#pricing" class="btn btn-primary">Start Free 30-Day Trial</a>
+                <a href="#demo" class="btn btn-secondary">Watch Demo (2 min)</a>
+            </div>
+
+            <p class="social-proof">Trusted by 200+ golf shops • 500,000+ fitting videos created • $12M+ in tracked sales</p>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="logo-grid">
+                <div class="logo-placeholder">TrackMan</div>
+                <div class="logo-placeholder">Foresight Sports</div>
+                <div class="logo-placeholder">FlightScope</div>
+                <div class="logo-placeholder">TopTracer</div>
+                <div class="logo-placeholder">Callaway</div>
+                <div class="logo-placeholder">TaylorMade</div>
+            </div>
+            <p class="trust-subtext">Integrates seamlessly with all major launch monitor systems</p>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Your Customers Forget. Your Sales Suffer.</h2>
+                <p class="subheadline">You invest in premium launch monitors and expert fittings, but here's what actually happens...</p>
+            </div>
+
+            <div class="pain-grid">
+                <div class="pain-card animate-on-scroll">
+                    <div class="pain-icon">🧠</div>
+                    <h3>The 48-Hour Memory Cliff</h3>
+                    <p>Golfers leave your shop excited, but within 2 days they can't remember which club performed better or why you recommended that shaft. The data that took 90 minutes to gather becomes a blur.</p>
+                </div>
+
+                <div class="pain-card animate-on-scroll">
+                    <div class="pain-icon">🛒</div>
+                    <h3>Lost Upsells & Accessories</h3>
+                    <p>Without a clear reminder of their fitting results, customers don't buy the recommended grips, shafts, or complementary clubs. You're leaving $200-500 per fitting on the table.</p>
+                </div>
+
+                <div class="pain-card animate-on-scroll">
+                    <div class="pain-icon">🚪</div>
+                    <h3>The "Let Me Think About It" Walk-Out</h3>
+                    <p>They say they'll be back, but they never return. You've lost the emotional peak moment when they saw their best shot of the day. That window closes fast.</p>
+                </div>
+
+                <div class="pain-card animate-on-scroll">
+                    <div class="pain-icon">📉</div>
+                    <h3>Wasted Marketing Investment</h3>
+                    <p>Each fitting costs you time, expertise, and opportunity cost. When customers don't convert, you've essentially paid $100-150 in labor for zero return.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <div class="solution-content">
+                <div class="section-header animate-on-scroll">
+                    <h2>Turn Every Fitting Into a Sales Tool That Works 24/7</h2>
+                </div>
+
+                <p class="value-prop animate-on-scroll">FitClip automatically captures your fitting sessions and transforms them into personalized, shareable video recaps that your customers will actually watch—and remember. Each video combines launch monitor data with clear explanations of what happened and why your recommendations matter.<br><br>The result? Higher close rates, more accessory sales, and customers who become your best marketers by sharing their swing improvements on social media.</p>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card animate-on-scroll">
+                        <div class="benefit-icon">📈</div>
+                        <h3>Boost Conversions by 20%+</h3>
+                        <p>Customers who receive video recaps are 2x more likely to complete their purchase within 7 days. The video keeps your shop top-of-mind during their decision window.</p>
+                    </div>
+
+                    <div class="benefit-card animate-on-scroll">
+                        <div class="benefit-icon">📢</div>
+                        <h3>Free Marketing That Actually Works</h3>
+                        <p>73% of golfers share their fitting videos on social media, creating authentic testimonials that drive new appointments. Each video is branded with your shop's logo.</p>
+                    </div>
+
+                    <div class="benefit-card animate-on-scroll">
+                        <div class="benefit-icon">⏱️</div>
+                        <h3>Zero Extra Work For Your Team</h3>
+                        <p>FitClip integrates with your existing launch monitor setup. Videos generate automatically during the fitting—no cameras, no editing, no hassle. Setup takes under 10 minutes.</p>
+                    </div>
+
+                    <div class="benefit-card animate-on-scroll">
+                        <div class="benefit-icon">💰</div>
+                        <h3>Increase Average Order Value</h3>
+                        <p>The video highlights complementary products at the perfect moment. Shops see $180 more per transaction from reminded accessory purchases.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>From Setup to Sales in Three Simple Steps</h2>
+                <p class="subheadline">FitClip integrates seamlessly into your existing workflow—no cameras, no complexity.</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3>Connect Your Launch Monitor</h3>
+                    <p>FitClip integrates with TrackMan, Foresight, FlightScope, and all major launch monitor systems. One-time setup takes 10 minutes. Our team handles the technical details.</p>
+                </div>
+
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3>Run Your Fitting Like Normal</h3>
+                    <p>FitClip records in the background while you work. Every swing, every club change, and all the data is captured automatically. Your fitter doesn't touch anything extra.</p>
+                </div>
+
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3>Customer Gets Personalized Video</h3>
+                    <p>Within 30 minutes, your customer receives a branded 2-3 minute video recap via email or text. The video highlights their best shots, explains your recommendations, and includes a direct link to purchase.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Everything You Need to Close More Sales</h2>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-image animate-on-scroll">
+                    <div>📹 AI-Selected Best Shots + Before/After Comparisons</div>
+                </div>
+                <div class="feature-content animate-on-scroll">
+                    <h3>Your Customer's Greatest Hits, Automatically</h3>
+                    <h4>No More Boring Data Dumps</h4>
+                    <p>FitClip's AI identifies the 5-7 most impactful swings from the fitting session—the ones that show real improvement or highlight why your recommendation matters. The video tells a compelling story, not just a data readout.</p>
+                    <ul class="feature-bullets">
+                        <li>Keeps viewers engaged (92% watch rate vs. 12% for printed reports)</li>
+                        <li>Highlights emotional peak moments that drive purchases</li>
+                        <li>Automatically selects before/after comparisons</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-content animate-on-scroll">
+                    <h3>Real Data, Made Understandable</h3>
+                    <h4>Turn Numbers Into Stories</h4>
+                    <p>Your launch monitor captures everything, but customers don't speak TrackMan. FitClip translates complex data into visual overlays with plain-English explanations. "That's 15 more yards and 8% straighter" hits differently than "1425 RPM backspin."</p>
+                    <ul class="feature-bullets">
+                        <li>Works with TrackMan, Foresight, FlightScope, TopTracer, and more</li>
+                        <li>Visualizes improvements customers can actually see</li>
+                        <li>Reinforces why they need the clubs you recommended</li>
+                    </ul>
+                </div>
+                <div class="feature-image animate-on-scroll">
+                    <div>📊 Launch Monitor Data + Visual Overlays</div>
+                </div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-image animate-on-scroll">
+                    <div>📱 Share Button + Your Branding</div>
+                </div>
+                <div class="feature-content animate-on-scroll">
+                    <h3>Turn Every Customer Into a Walking Billboard</h3>
+                    <h4>Free Marketing That Converts</h4>
+                    <p>Every FitClip video is branded with your shop's logo, colors, and contact info. When customers share their swing improvements (and 73% do), they're sending qualified leads straight to your door. It's social proof that actually works.</p>
+                    <ul class="feature-bullets">
+                        <li>Custom branding and white-label options available</li>
+                        <li>One-click sharing to all major platforms</li>
+                        <li>Average video gets 47 views (mostly local golfers)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Real Shops. Real Results.</h2>
+                <p class="subheadline">Over 200 golf shops have transformed their fitting process with FitClip</p>
+            </div>
+
+            <div class="featured-testimonial animate-on-scroll">
+                <p class="testimonial-quote">"We went from a 40% close rate to 68% in just 3 months. FitClip paid for itself in the first week. The videos do the selling for us—customers rewatch them with their spouse or friends, and by the time they call back, they're ready to buy. It's the best ROI of anything we've tried."</p>
+                <div class="testimonial-author">
+                    <div class="author-photo">MC</div>
+                    <div class="author-info">
+                        <h4>Mike Chen</h4>
+                        <p>Owner, Precision Golf Lab • Austin, TX</p>
+                    </div>
+                </div>
+                <div class="metric-callout">
+                    ▲ 70% increase in conversion rate  |  ▲ $2,400 avg monthly revenue increase
+                </div>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <p class="testimonial-quote">"Our customers were constantly calling back asking 'which driver was better?' Now they just rewatch their FitClip. It's saved our staff hours every week."</p>
+                    <div class="testimonial-author">
+                        <div class="author-photo">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Martinez</h4>
+                            <p>Head Fitter, GolfTech NYC</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card animate-on-scroll">
+                    <p class="testimonial-quote">"The social media shares are insane. We've booked 15 new fittings directly from customers posting their FitClip videos on Instagram."</p>
+                    <div class="testimonial-author">
+                        <div class="author-photo">JW</div>
+                        <div class="author-info">
+                            <h4>James Wong</h4>
+                            <p>Marketing Director, Swing Perfect Golf</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card animate-on-scroll">
+                    <p class="testimonial-quote">"I was skeptical about adding another tech tool, but FitClip literally runs itself. My fitters love that they don't have to do anything extra."</p>
+                    <div class="testimonial-author">
+                        <div class="author-photo">DP</div>
+                        <div class="author-info">
+                            <h4>David Park</h4>
+                            <p>Owner, Premier Golf Fitting</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-number">68%</div>
+                    <div class="stat-label">Average conversion rate with FitClip</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$180</div>
+                    <div class="stat-label">Avg increase in order value per fitting</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">Video watch rate (vs 12% for printed reports)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">73%</div>
+                    <div class="stat-label">Of customers share videos on social media</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Pricing That Pays For Itself</h2>
+                <p class="subheadline">Choose the plan that fits your shop. Cancel anytime. No setup fees.</p>
+            </div>
+
+            <div class="pricing-cards">
+                <div class="pricing-card animate-on-scroll">
+                    <div class="tier-label">PERFECT FOR TESTING</div>
+                    <h3 class="plan-name">Pay As You Go</h3>
+                    <div class="price">$29</div>
+                    <div class="price-period">per fitting video</div>
+                    <p class="plan-description">Try FitClip with zero commitment. Pay only for the fittings you want to record.</p>
+                    <ul class="features-list">
+                        <li>Personalized 2-3 minute video recaps</li>
+                        <li>Launch monitor data integration</li>
+                        <li>Branded with your shop logo</li>
+                        <li>Purchase links & upsell integration</li>
+                        <li>Email & SMS delivery</li>
+                        <li>Basic analytics dashboard</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width: 100%; text-align: center;">Start First Video Free</a>
+                    <div class="best-for">Best for shops doing 1-20 fittings per month</div>
+                </div>
+
+                <div class="pricing-card featured animate-on-scroll">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <div class="tier-label">BEST VALUE FOR BUSY SHOPS</div>
+                    <h3 class="plan-name">Unlimited</h3>
+                    <div class="price">$199</div>
+                    <div class="price-period">per month</div>
+                    <p class="plan-description">Unlimited fitting videos plus premium features. Lock in this rate forever—price increases to $249/mo next month.</p>
+                    <ul class="features-list">
+                        <li>Everything in Pay As You Go, plus:</li>
+                        <li><strong>UNLIMITED fitting videos</strong></li>
+                        <li><strong>Advanced analytics dashboard</strong></li>
+                        <li><strong>Automated follow-up sequences</strong></li>
+                        <li><strong>Custom video templates</strong></li>
+                        <li><strong>Priority support (2-hour response)</strong></li>
+                        <li><strong>Multi-location support (up to 3)</strong></li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">Start 30-Day Free Trial</a>
+                    <div class="best-for">Best for shops doing 20+ fittings per month</div>
+                </div>
+
+                <div class="pricing-card animate-on-scroll">
+                    <div class="tier-label">FOR CHAINS & FRANCHISES</div>
+                    <h3 class="plan-name">Custom Enterprise</h3>
+                    <div class="price" style="font-size: 36px;">Let's Talk</div>
+                    <div class="price-period">Custom pricing</div>
+                    <p class="plan-description">White-label solution for multiple locations with dedicated support and custom integrations.</p>
+                    <ul class="features-list">
+                        <li>Everything in Unlimited, plus:</li>
+                        <li><strong>White-label branding</strong></li>
+                        <li><strong>Unlimited locations</strong></li>
+                        <li><strong>Custom API integrations</strong></li>
+                        <li><strong>Dedicated account manager</strong></li>
+                        <li><strong>Staff training included</strong></li>
+                        <li><strong>99.9% uptime SLA</strong></li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width: 100%; text-align: center; background: var(--navy); color: white; border: none;">Schedule Demo</a>
+                    <div class="best-for">Chains with 5+ locations, $25K+ annually</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Questions? We've Got Answers.</h2>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">How long does setup take?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            FitClip integrates with your launch monitor in under 10 minutes. Our technical support team handles the entire setup via a screenshare call. Most shops are recording their first fitting within 30 minutes of signing up. We support TrackMan, Foresight, FlightScope, TopTracer, and 20+ other systems.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">Do my fitters need to do anything different?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Nope. FitClip runs completely in the background. Your fitters conduct the fitting exactly as they always have—no cameras to position, no recording buttons to press, no extra steps. The system automatically captures everything and generates the video after the session ends.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">How much does it really increase conversions?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our average shop sees a 20-30% lift in conversion rates within the first 60 days. Some shops report even higher increases (our best performer went from 38% to 72%). We track this data in your dashboard and will show you the exact ROI. If you don't see measurable improvement within 60 days, we refund your money under our guarantee.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">Can customers share the videos on social media?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! In fact, 73% of customers share their FitClip videos on Instagram, Facebook, or Twitter. Each video is branded with your shop's logo and contact info, so every share becomes free advertising. You can enable one-click social sharing or disable it if you prefer.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">Is there a contract or can I cancel anytime?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            All plans are month-to-month with no long-term contract required. You can cancel at any time with one click in your dashboard. We earn your business every month by delivering results, not by locking you into a contract. That said, 96% of shops that start with FitClip are still using it 12 months later.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">What about data privacy and GDPR compliance?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We take privacy seriously. Customer videos are stored securely and only accessible to the customer and your shop. We're fully GDPR and CCPA compliant. Customers can request deletion of their videos at any time, and we automatically delete videos after 2 years unless the customer opts to keep them longer.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="final-cta-content">
+            <h2>Ready to Turn Fittings Into Revenue?</h2>
+            <p class="supporting-text">Join 200+ shops using FitClip to close more sales, retain more customers, and grow faster. Start your free 30-day trial today—no credit card required.</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" style="font-size: 20px; padding: 20px 40px;">Start Free 30-Day Trial</a>
+            </div>
+
+            <div class="cta-benefits">
+                <span>✓ No credit card required</span>
+                <span>✓ Full access to all features</span>
+                <span>✓ Cancel anytime</span>
+            </div>
+
+            <div class="guarantee-box animate-on-scroll">
+                <div class="guarantee-icon">🛡️</div>
+                <h3>Our Iron-Clad Guarantee</h3>
+                <p>Try FitClip completely free for 30 days. If you don't see measurable improvement in your conversion rates within 60 days, we'll refund 100% of your money. No questions asked. No hoops to jump through.<br><br>We're confident because 89% of shops see ROI in their first month.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">FitClip</div>
+                    <p class="footer-tagline">Turning club fittings into sales, one video at a time.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">𝕏</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">📷</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Integrations</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Video Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">API Docs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Partner Program</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">GDPR Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 FitClip Technologies, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current FAQ
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Play button interaction
+        document.querySelector('.play-button')?.addEventListener('click', () => {
+            alert('Demo video would play here! In a real implementation, this would open a video player with your demo.');
+        });
+    </script>
+</body>
+</html>
+
